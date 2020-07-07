@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!--<link href="https://fonts.googleapis.com/css?family=Lato|Staatliches" rel="stylesheet">-->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Roboto+Condensed:ital@1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <title>NewsGrid | Latest News</title>
+</head>
+
+<body>
+
+  <nav id="main-nav">
+    <div class="container">
+      <a href=index.html>
+        <img src="img/logo.png" alt="NewsGrid" class="logo">
+      </a>
+      <div class="social">
+        <a href="http://facebook.com" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="http://twitter.com" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="http://instagram.com" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="http://youtube.com" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+      </div>
+      <ul>
+        <li><a class="current" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Showcase -->
+
+  <header id="showcase">
+    <div class="container">
+      <div class="showcase-container">
+        <div class="showcase-content">
+          <div class="category category-sports">Sports</div>
+          <h1>Dan Carter makes New Zealand rugby return with Southbridge</h1>
+          <p>Dan Carter gave himself a pass mark after his first game of rugby in New Zealand since 2015 but was not
+            expecting to make a marketers' dream debut for the Blues next week against the Crusaders.</p>
+          <a href="article_dan_ruby.html" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Articles -->
+  <section id="home-articles" class="py-2">
+    <div class="container">
+      <h2>Editor Picks</h2>
+      <div class="articles-container">
+        <!--News Api-->
+        <?php
+          if(file_exists('news.json')){
+            $api_url = 'news.json';
+            $newslist = json_decode(file_get_contents($api_url));
+          }else{
+            $news_keyword = 'politics'; //we will be fetching only sports related news
+            $api_url = 'http://newsapi.org/v2/everything?q=bitcoin&from=2020-06-07&sortBy=publishedAt&apiKey=dd2737e6c30d4369a2a0ba80ec055ac5';
+            $newslist = file_get_contents($api_url);
+            file_put_contents('news.json', $newslist);
+            $newslist = json_decode($newslist);
+          }
+          foreach($newslist-> article as $news)
+        {?>
+        <article class="card">
+          <img src="img/articles/ent1.jpg" alt="">
+          <div>
+            <div class="category category-tech">Technology</div>
+            <h3>
+              <a href="article_vr.html">XRSpace Headset Opens Door to New Virtual World</a>
+            </h3>
+            <p>A new virtual reality headset designed for mobility will serve as an entry point into a new virtual
+              world. The $599 Mova headset from XRSpace, founded by former HTC chief Peter Chou, will support 5G and be
+              the exclusive on-ramp to Manova, a social reality platform that aims to defy the boundaries of space and
+              time to bring people together. Users can roam Manova as full-body avatars.</p>
+          </div>
+        </article>
+        <article class="card bg-dark">
+          <div class="category category-sports">Sports</div>
+          <h3>
+            <a href="article_hardik.html">"Young Kids With Big Dreams": Hardik, Krunal Pandya Share Their First
+              Interview</a>
+          </h3>
+          <p>Hardik and Krunal Pandya took a trip down memory lane and posted their first-ever interview on social
+            media.</p>
+        </article>
+        <article class="card">
+          <img src="img/articles/tech1.jpg" alt="">
+          <div class="category category-tech">Technology</div>
+          <h3>
+            <a href="article_apple.html">Apple Moving Macs from Intel to Arm</a>
+          </h3>
+          <p>Apple Moving Macs from Intel to Arm. After two years of rumors, at this year's (virtual) World Wide
+            Developer Conference (WWDC), Apple finally announced that it was going to migrate all its Mac products from
+            Intel processors to the company's own Arm-based silicon.</p>
+        </article>
+        <article class="card">
+          <div class="category category-med">Medicine</div>
+          <h3>
+            <a href="article_covid.html">India's COVID-19 Vaccine Trial "Marks Beginning Of The End": Centre</a>
+          </h3>
+          <p>Science Ministry's statement comes amid a row over a letter by the ICMR setting August 15 - Independence
+            Day - as the target for releasing a novel coronavirus vaccine.</p>
+          <img src="img/articles/covid.jpg" alt="">
+        </article>
+        <article class="card">
+          <img src="img/articles/sush.jpg" alt="">
+          <div class="category category-ent">Entertainment</div>
+          <h3>
+            <a href="article_sush.html">Sushant Singh Rajput and 'Dil Bechara' co-star Sanjana Sanghi bonded over love
+              for
+              academics and food</a>
+          </h3>
+          <p>Sushant Singh Rajput (SSR) was found hanging at his Bandra residence on June 14, 2020, leaving his fans,
+            family and film fraternity in a state of shock. Mumbai police is currently investigating the suicide case.
+          </p>
+        </article>
+        <article class="card bg-primary">
+          <div class="category category-acad">Academics</div>
+          <h3>
+            <a href="article_exams.html">Will TSCHE Cancel Telangana Universities Final Year UG, PG Exams 2019-20?</a>
+          </h3>
+          <p>UG and PG exams in Telangana, which are scheduled to begin from June 20, 2020, have been postponed.
+            Decision on cancellation of final-year exams noon. </p>
+        </article>
+        <article class="card">
+          <div>
+            <div class="category category-tech ">Technology</div>
+            <h3>
+              <a href="article_yoga.html">Lenovo Yoga C940 review: Versatile, lightweight and powerful Windows laptop
+              </a>
+            </h3>
+            <p>The Yoga C940 is compact and light at 1.35Kg and features edgy aluminium chassis.</p>
+          </div>
+          <img src="img/articles/yoga.jpg" alt="">
+        </article>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="main-footer" class="py-2">
+    <div class="container footer-container">
+      <div>
+        <img src="img/logo_light.png" alt="NewsGrid">
+        <p>News Grid is India’s largest news company. Our news simplify and enhance the everyday lives of people</p>
+      </div>
+      <div>
+        <h3>Email Newsletter</h3>
+        <p>Make your own newsletter on the things you care about</p>
+        <form>
+          <input type="email" placeholder="Enter Email...">
+          <input type="submit" value="Subscribe" class="btn btn-primary">
+        </form>
+      </div>
+      <div>
+        <h3>Site Links</h3>
+        <ul class="list">
+          <li><a href="index.html">Help & Support</a></li>
+          <li><a href="index.html">Privacy Policy</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Join Our Club</h2>
+        <p> From everything you need to know to start your day to recap of the most important news across the globe,
+          especially crafted for you.</p>
+        <a href="#" class="btn btn-secondary">Join Now</a>
+      </div>
+      <div>
+        <p>
+          Copyright &copy; 2020, All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
