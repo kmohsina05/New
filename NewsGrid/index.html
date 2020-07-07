@@ -58,19 +58,6 @@
       <h2>Editor Picks</h2>
       <div class="articles-container">
         <!--News Api-->
-        <?php
-          if(file_exists('news.json')){
-            $api_url = 'news.json';
-            $newslist = json_decode(file_get_contents($api_url));
-          }else{
-            $news_keyword = 'politics'; //we will be fetching only sports related news
-            $api_url = 'http://newsapi.org/v2/everything?q=bitcoin&from=2020-06-07&sortBy=publishedAt&apiKey=dd2737e6c30d4369a2a0ba80ec055ac5';
-            $newslist = file_get_contents($api_url);
-            file_put_contents('news.json', $newslist);
-            $newslist = json_decode($newslist);
-          }
-          foreach($newslist-> article as $news)
-        {?>
         <article class="card">
           <img src="img/articles/ent1.jpg" alt="">
           <div>
@@ -143,7 +130,6 @@
           </div>
           <img src="img/articles/yoga.jpg" alt="">
         </article>
-        <?php } ?>
       </div>
     </div>
   </section>
